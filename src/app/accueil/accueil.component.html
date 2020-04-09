@@ -1,0 +1,55 @@
+<p-menubar [model]="menuItems">
+    <div>
+        <input type="text" pInputText placeholder="Search">
+        <button pButton label="Logout" icon="pi pi-power-off" style="margin-left:.25em"></button>
+    </div>
+</p-menubar>
+
+
+<div class="p-grid" [style]="{'width':'100%','height':'550px'}">
+    <div class="p-col-3">
+        
+            <div >
+                <label for="numero">Numéro</label>
+            </div>
+            <div >
+                <p-inputMask id="numero" name="numero" mask="79-999-99-99" [(ngModel)]="numero"></p-inputMask>
+            </div>
+            <div >
+                <label for="debut">Date Début</label>
+            </div>
+            <div >
+                <p-calendar id="debut" [(ngModel)]="debut" dateFormat="dd.mm.yy"
+                 showButtonBar="true" name="debut"></p-calendar>
+            </div>
+            
+            <div >
+                <label for="fin">Date Fin</label>
+            </div>
+            <div >
+                <p-calendar id="fin" [(ngModel)]="fin" dateFormat="dd.mm.yy"
+                showButtonBar="true" name="fin"></p-calendar>
+            </div>
+            <div >
+                <label for="debut">Inclure Les Contacts</label>
+            </div>
+            <div >
+                <p-inputSwitch [(ngModel)]="checked" name="contact"></p-inputSwitch>
+            </div>
+           
+    
+        <button pButton type="button" label="Afficher"  (click)="handleAfficher($event)"></button>
+        <div *ngIf = "visible">
+            <p-progressBar  mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar> 
+        </div>
+        <h3>Liste des Contacts</h3>
+        <p-tree [value]="userTree" [filter]="true" filterMode="strict"></p-tree>
+
+        
+
+    </div>
+    <div class="p-col-9">
+        <p-gmap [options]="options" [overlays]="overlays" [style]="{'width':'100%','height':'100%'}" ></p-gmap>
+
+    </div>
+</div>
